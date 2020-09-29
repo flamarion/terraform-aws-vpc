@@ -5,7 +5,7 @@ provider "aws" {
 
 
 module "vpc" {
-  source                      = "../"
+  source                      = "../../"
   az                          = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
   cidr_block                  = "10.0.0.0/16"
   enable_dns_hostnames        = true
