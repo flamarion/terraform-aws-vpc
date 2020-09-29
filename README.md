@@ -27,23 +27,29 @@ https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws
 |----|----|---------|-------------|-----------|
 |az|list(string)|yes|["eu-central-1a"]|Availability Zone List|
 |cidr_block|string|yes|"10.0.0.0/16"|Network address in CIDR format|
+|enable_dns_hostnames|bool|no|true|Enable hostname support in the VPC|
+|enable_dns_support|bool|no|true|Enable DNS support in the VPC|
+|vpc_tags|map(string)|no|{}|Map of tags for the VPC, will be merged with default tags|
+|public_subnets|list(string)|no|["10.1.0.0/24"]|List of public subnets|
+|private_subnets|list(string)|no|["10.0.1.0/24"]|List of private subnets|
+|database_subnets|list(string)|no|[]|List of database subnets|
+|map_public_ip|bool|no|false|Map public ip for instances in a subnet|
+
+
 |create_db_subnet_group|bool|no|false|Create database subnet group with the database subnets|
 |database_subnet_group_tags|map(string|no|{}|Database subnet group tags, will be merged with default tags|
 |database_subnet_tags|map(string)|no|{}|Map of tags for the database subnets, will be merged with default tags|
-|database_subnets|list(string)|no|[]|List of database subnets|
+
 |eip_tags|map(string)|no|{}|Map of tags for the EIP, will be merged with default tags|
-|enable_dns_hostnames|bool|no|true|Enable hostname support in the VPC|
-|enable_dns_support|bool|no|true|Enable DNS support in the VPC|
 |enable_nat_gateway|bool|no|false|Enable nat gateway for private subnet|
 |igw_tags|map(string)|no|{}|Map of tags for the Internet Gateway, will be merged with default tags|
-|map_public_ip|bool|no|false|Map public ip for instances in public subnets|
+
 |nat_gw_tags|map(string)|no|{}|Map of tags for the Nat Gateway, will be merged with default tags|
 |private_subnet_tags|map(string)|no|{}|Map of tags for the private subnets, will be merged with default tags|
-|private_subnets|list(string)|no|["10.0.1.0/24"]|List of private subnets|
+
 |public_subnet_tags|map(string)|no|{}|Map of tags for the public subnets, will be merged with default tags|
-|public_subnets|list(string)|no|["10.0.0.0/24"]|List of public subnets|
-|tag_prefix|string|no|""|String which will prefix all tags|
-|vpc_tags|map(string)|no|{}|Map of tags for the VPC, will be merged with default tags|
+
+
 
 ## Outputs
 
