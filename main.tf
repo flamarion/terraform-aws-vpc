@@ -2,11 +2,6 @@ terraform {
   required_version = "~> 0.12"
 }
 
-provider "aws" {
-  version = "~> 2.59"
-  region  = "eu-central-1"
-}
-
 resource "aws_vpc" "vpc" {
   cidr_block           = var.cidr_block
   enable_dns_hostnames = var.enable_dns_hostnames
@@ -44,7 +39,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   name        = var.db_subnet_group_name
   description = var.db_subnet_group_description
   subnet_ids  = aws_subnet.database_subnets.*.id
-  tags        = var.database_subnet_group_tags
+  tags        = var.db_subnet_group_tags
 }
 
 
