@@ -1,4 +1,7 @@
-# Comment to update the tags
+output "az" {
+  value = var.az
+}
+
 output "vpc_id" {
   value = aws_vpc.vpc.id
 }
@@ -29,8 +32,4 @@ output "database_subnets_id" {
 
 output "db_subnet_group" {
   value = aws_db_subnet_group.db_subnet_group.*.id
-}
-
-output "az" {
-  value = var.az
 }
