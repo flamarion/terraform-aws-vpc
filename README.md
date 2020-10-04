@@ -32,8 +32,8 @@ https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws
 |enable_nat_gateway|bool|no|false|Enable nat gateway for private subnet|
 |vpc_tags|map(string)|no|{}|Map of tags for the VPC|
 |public_subnets|list(string)|no|["10.1.0.0/24"]|List of public subnets|
-|private_subnets|list(string)|no|["10.2.0.0/24"]|List of private subnets|
-|database_subnets|list(string)|no|["10.3.0.0/24"]|List of database subnets|
+|private_subnets|list(string)|no|[]|List of private subnets|
+|database_subnets|list(string)|no|[]|List of database subnets|
 |public_subnet_tags|map(string)|no|{}|Map of tags for the public subnets|
 |private_subnet_tags|map(string)|no|{}|Map of tags for the private subnets|
 |database_subnet_tags|map(string)|no|{}|Map of tags for the database subnets|

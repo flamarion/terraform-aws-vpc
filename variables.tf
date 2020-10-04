@@ -49,7 +49,7 @@ variable "public_subnet_tags" {
 variable "private_subnets" {
   description = "Private Subnets List"
   type        = list(string)
-  default     = ["10.0.2.0/24"]
+  default     = []
 }
 
 variable "private_subnet_tags" {
@@ -61,7 +61,7 @@ variable "private_subnet_tags" {
 variable "database_subnets" {
   description = "Database Subnets List"
   type        = list(string)
-  default     = ["10.0.3.0/24"]
+  default     = []
 }
 
 variable "database_subnet_tags" {
