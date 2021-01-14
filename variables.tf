@@ -101,13 +101,13 @@ variable "cache_subnets" {
   default     = []
 }
 
-variable "cachje_subnet_tags" {
+variable "cache_subnet_tags" {
   description = "Map of cache subnet tags"
   type        = map(string)
   default     = {}
 }
 
-variable "create_db_cache_group" {
+variable "create_cache_cache_group" {
   description = "Create cache subnet groups"
   type        = bool
   default     = false
@@ -169,6 +169,12 @@ variable "private_rt_tags" {
 
 variable "db_rt_tags" {
   description = "Map of database route table tags"
+  type        = map(string)
+  default     = {}
+}
+
+variable "cache_rt_tags" {
+  description = "Map of cache route table tags"
   type        = map(string)
   default     = {}
 }
