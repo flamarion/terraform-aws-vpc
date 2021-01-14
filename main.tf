@@ -89,6 +89,13 @@ resource "aws_route_table" "db_rt" {
   tags   = var.db_rt_tags
 }
 
+resource "aws_route_table" "cache_rt" {
+  count  = length(var.cache_subnets) > 0 ? 1 : 0
+  vpc_id = aws_vpc.vpc.id
+  tags   = var.cache_rt_tags
+}
+
+
 resource "aws_route" "public_route" {
   route_table_id         = aws_route_table.public_rt.id
   destination_cidr_block = "0.0.0.0/0"
@@ -109,6 +116,13 @@ resource "aws_route" "db_route" {
   nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
 }
 
+resource "aws_route" "cache_route" {
+  count                  = var.enable_nat_gateway && length(var.cache_subnets) > 0 ? 1 : 0
+  route_table_id         = aws_route_table.cache_rt[count.index].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
+}
+
 resource "aws_route_table_association" "public_rta" {
   count          = length(var.public_subnets)
   subnet_id      = aws_subnet.public_subnets[count.index].id
@@ -125,4 +139,10 @@ resource "aws_route_table_association" "db_rta" {
   count          = var.enable_nat_gateway && length(var.database_subnets) > 0 ? length(var.database_subnets) : 0
   subnet_id      = aws_subnet.database_subnets[count.index].id
   route_table_id = aws_route_table.db_rt[0].id
+}
+
+resource "aws_route_table_association" "cache_rta" {
+  count          = var.enable_nat_gateway && length(var.cache_subnets) > 0 ? length(var.cache_subnets) : 0
+  subnet_id      = aws_subnet.cache_subnets[count.index].id
+  route_table_id = aws_route_table.cache_rt[0].id
 }
