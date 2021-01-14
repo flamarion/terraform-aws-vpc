@@ -107,7 +107,7 @@ variable "cache_subnet_tags" {
   default     = {}
 }
 
-variable "create_cache_cache_group" {
+variable "create_cache_subnet_group" {
   description = "Create cache subnet groups"
   type        = bool
   default     = false
