@@ -46,7 +46,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   tags        = var.db_subnet_group_tags
 }
 
-resource "aws_elasticache_security_group" "cache_subnet_group" {
+resource "aws_elasticache_subnet_group" "cache_subnet_group" {
   count       = var.create_cache_subnet_group ? 1 : 0
   name        = var.cache_subnet_group_name
   description = var.cache_subnet_group_description
