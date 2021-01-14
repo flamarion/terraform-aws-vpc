@@ -33,3 +33,15 @@ output "database_subnets_id" {
 output "db_subnet_group" {
   value = aws_db_subnet_group.db_subnet_group.*.id
 }
+
+output "cache_subnets" {
+  value = aws_subnet.cache_subnets.*.cidr_block
+}
+
+output "cache_subnets_id" {
+  value = aws_subnet.cache_subnets.*.id
+}
+
+output "cache_subnet_group" {
+  value = aws_elasticache_security_group.cache_subnet_group.*.id
+}

@@ -94,6 +94,43 @@ variable "db_subnet_group_tags" {
   default     = {}
 }
 
+
+variable "cache_subnets" {
+  description = "Cache Subnets List"
+  type        = list(string)
+  default     = []
+}
+
+variable "cachje_subnet_tags" {
+  description = "Map of cache subnet tags"
+  type        = map(string)
+  default     = {}
+}
+
+variable "create_db_cache_group" {
+  description = "Create cache subnet groups"
+  type        = bool
+  default     = false
+}
+
+variable "cache_subnet_group_name" {
+  description = "Cache subnet group name"
+  type        = string
+  default     = "db-subnet-group"
+}
+
+variable "cache_subnet_group_description" {
+  description = "Cache subnet group name"
+  type        = string
+  default     = "Database Subnet Group"
+}
+
+variable "cache_subnet_group_tags" {
+  description = "Map cache subnet group tags"
+  type        = map(string)
+  default     = {}
+}
+
 variable "enable_nat_gateway" {
   description = "Enable NAT gateway"
   type        = bool

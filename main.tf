@@ -30,6 +30,14 @@ resource "aws_subnet" "database_subnets" {
   tags              = var.database_subnet_tags
 }
 
+resource "aws_subnet" "cache_subnets" {
+  count             = length(var.cache_subnets) > 0 ? length(var.cache_subnets) : 0
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = var.az[count.index]
+  cidr_block        = var.cache_subnets[count.index]
+  tags              = var.cache_subnet_tags
+}
+
 resource "aws_db_subnet_group" "db_subnet_group" {
   count       = var.create_db_subnet_group ? 1 : 0
   name        = var.db_subnet_group_name
@@ -38,6 +46,12 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   tags        = var.db_subnet_group_tags
 }
 
+resource "aws_elasticache_security_group" "cache_subnet_group" {
+  count       = var.create_cache_subnet_group ? 1 : 0
+  name        = var.cache_subnet_group_name
+  description = var.cache_subnet_group_description
+  subnet_ids  = aws_subnet.cache_subnets.*.id
+}
 
 resource "aws_eip" "eip" {
   count = var.enable_nat_gateway ? 1 : 0
