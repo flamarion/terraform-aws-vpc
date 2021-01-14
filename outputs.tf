@@ -43,5 +43,5 @@ output "cache_subnets_id" {
 }
 
 output "cache_subnet_group" {
-  value = aws_elasticache_security_group.cache_subnet_group.*.id
+  value = aws_elasticache_subnet_group.cache_subnet_group.*.id
 }
