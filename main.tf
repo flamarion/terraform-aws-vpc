@@ -78,19 +78,19 @@ resource "aws_route_table" "public_rt" {
 }
 
 resource "aws_route_table" "private_rt" {
-  count  = length(var.private_subnets) > 0 ? 1 : 0
+  count  = var.enable_nat_gateway && length(var.private_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.vpc.id
   tags   = var.private_rt_tags
 }
 
 resource "aws_route_table" "db_rt" {
-  count  = length(var.database_subnets) > 0 ? 1 : 0
+  count  = var.enable_nat_gateway && length(var.database_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.vpc.id
   tags   = var.db_rt_tags
 }
 
 resource "aws_route_table" "cache_rt" {
-  count  = length(var.cache_subnets) > 0 ? 1 : 0
+  count  = var.enable_nat_gateway && length(var.cache_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.vpc.id
   tags   = var.cache_rt_tags
 }
